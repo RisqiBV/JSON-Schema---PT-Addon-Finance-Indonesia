@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Bill of Material (BOM) Line Schema",
+  "type": "object",
+  "description": "One BOM line linked to a Production Order (PRO).",
+  "properties": {
+    "poNo": {
+      "type": "string",
+      "maxLength": 25,
+      "description": "Production Order number (PRO No)."
+    },
+    "materialCode": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Material ItemCode."
+    },
+    "consumption": {
+      "type": "number",
+      "multipleOf": 0.00001,
+      "description": "Material requirement per 1 piece of finished goods (numeric(18,5))."
+    },
+    "unitCode": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Material unit of measure."
+    },
+    "poQty": {
+      "type": "number",
+      "description": "Production Order quantity (float)."
+    }
+  },
+  "required": ["poNo", "materialCode", "consumption", "unitCode", "poQty"],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "poNo": "PO-24-000789",
+      "materialCode": "FAB-COT-180-BLK",
+      "consumption": 0.32000,
+      "unitCode": "KG",
+      "poQty": 5000
+    }
+  ]
+}

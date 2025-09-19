@@ -1,0 +1,79 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Sales Invoice Schema",
+    "type": "object",
+    "description": "Sales invoice document. Timestamps use SQL Server format: 'yyyy-MM-dd HH:mm:ss.SSS'.",
+    "properties": {
+      "invoiceNo": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Primary invoice number."
+      },
+      "invoiceDate": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+        "description": "Invoice date."
+      },
+      "vesselDate": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+        "description": "Vessel/Shipment date."
+      },
+      "customerCode": {
+        "type": ["string", "null"],
+        "maxLength": 10,
+        "description": "Customer code (optional)."
+      },
+      "deliveryNoteNo": {
+        "type": ["string", "null"],
+        "maxLength": 200,
+        "description": "Delivery Note number(s) (optional)."
+      },
+      "category": {
+        "type": ["string", "null"],
+        "enum": ["Export", "Local", null],
+        "maxLength": 20,
+        "description": "Invoice category: Export or Local (optional)."
+      },
+      "poNo": {
+        "type": ["string", "null"],
+        "maxLength": 25,
+        "description": "Production Order number (PRO NO) (optional)."
+      },
+      "qty": {
+        "type": ["number", "null"],
+        "description": "Quantity in the PRO UnitCode (optional)."
+      },
+      "price": {
+        "type": ["number", "null"],
+        "description": "Price to be billed to the buyer (optional)."
+      },
+      "priceFob": {
+        "type": ["number", "null"],
+        "description": "FOB price declared in documents (optional)."
+      },
+      "currency": {
+        "type": ["string", "null"],
+        "maxLength": 10,
+        "description": "Currency code (optional)."
+      }
+    },
+    "required": ["invoiceNo", "invoiceDate", "vesselDate"],
+    "additionalProperties": false,
+    "examples": [
+      {
+        "invoiceNo": "INV-2025-000233",
+        "invoiceDate": "2025-09-24 10:05:00.000",
+        "vesselDate": "2025-09-26 18:00:00.000",
+        "customerCode": "CUST-001",
+        "deliveryNoteNo": "SJ-2025-0915-001",
+        "category": "Export",
+        "poNo": "PO-24-000789",
+        "qty": 1200,
+        "price": 2.75,
+        "priceFob": 2.60,
+        "currency": "USD"
+      }
+    ]
+  }
+  

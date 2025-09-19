@@ -1,0 +1,129 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Material Transaction Schema",
+    "type": "object",
+    "description": "Transaction document with Header and Detail lines. Datetimes use SQL Server format: 'yyyy-MM-dd HH:mm:ss.SSS'.",
+    "properties": {
+      "header": {
+        "type": "object",
+        "properties": {
+          "transactionNo": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Primary transaction number (Header)."
+          },
+          "transactionDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+            "description": "Transaction date (Header)."
+          },
+          "poNo": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Related Purchase Order number (Header)."
+          },
+          "noAju": {
+            "type": "string",
+            "maxLength": 26,
+            "description": "Nomor Aju (PPKEK document) (Header)."
+          }
+        },
+        "required": ["transactionNo", "transactionDate", "poNo", "noAju"],
+        "additionalProperties": false
+      },
+      "details": {
+        "type": "array",
+        "minItems": 1,
+        "description": "Detail line items.",
+        "items": {
+          "type": "object",
+          "properties": {
+            "fc": {
+              "type": "string",
+              "enum": ["PO", "FOC"],
+              "maxLength": 15,
+              "description": "PO or FOC (Free Of Charge) (Detail)."
+            },
+            "itemCode": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Item code (Detail)."
+            },
+            "vendorQty": {
+              "type": "number",
+              "multipleOf": 0.01,
+              "description": "Quantity by Order UOM (Detail) — decimal(18,2)."
+            },
+            "vendorUnitCode": {
+              "type": "string",
+              "maxLength": 10,
+              "description": "Order UOM code (Detail)."
+            },
+            "internalQty": {
+              "type": "number",
+              "description": "Quantity by Base UOM (Detail)."
+            },
+            "internalUnitCode": {
+              "type": "string",
+              "maxLength": 10,
+              "description": "Base UOM code (Detail)."
+            },
+            "unitPrice": {
+              "type": "number",
+              "description": "Unit price (Detail)."
+            },
+            "batchNo": {
+              "type": "integer",
+              "description": "Batch number (Detail)."
+            }
+          },
+          "required": [
+            "fc",
+            "itemCode",
+            "vendorQty",
+            "vendorUnitCode",
+            "internalQty",
+            "internalUnitCode",
+            "unitPrice",
+            "batchNo"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "required": ["header", "details"],
+    "additionalProperties": false,
+    "examples": [
+      {
+        "header": {
+          "transactionNo": "TRX-2025-000045",
+          "transactionDate": "2025-09-18 10:15:00.000",
+          "poNo": "PO-2025-000123",
+          "noAju": "12345678901234567890123456"
+        },
+        "details": [
+          {
+            "fc": "PO",
+            "itemCode": "RM-PP-110",
+            "vendorQty": 1500.00,
+            "vendorUnitCode": "KG",
+            "internalQty": 1500,
+            "internalUnitCode": "KG",
+            "unitPrice": 1.25,
+            "batchNo": 1
+          },
+          {
+            "fc": "FOC",
+            "itemCode": "DYE-BLUE-01",
+            "vendorQty": 20.50,
+            "vendorUnitCode": "LTR",
+            "internalQty": 20.5,
+            "internalUnitCode": "LTR",
+            "unitPrice": 0,
+            "batchNo": 2
+          }
+        ]
+      }
+    ]
+  }
+  

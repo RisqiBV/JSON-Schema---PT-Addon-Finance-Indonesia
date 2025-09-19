@@ -1,0 +1,134 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Purchase Order Schema",
+    "type": "object",
+    "description": "Purchase Order document with Header and Detail lines. Timestamps use SQL Server format: 'yyyy-MM-dd HH:mm:ss.SSS'.",
+    "properties": {
+      "header": {
+        "type": "object",
+        "properties": {
+          "supplierCode": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Supplier code (Header)."
+          },
+          "poDate": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+            "description": "PO date (Header)."
+          },
+          "poNo": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "PO number (Primary, Header)."
+          },
+          "etdActual": {
+            "type": ["string", "null"],
+            "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+            "description": "ETD Actual (Header, optional)."
+          },
+          "eta": {
+            "type": ["string", "null"],
+            "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+            "description": "ETA (Header, optional)."
+          },
+          "fc": {
+            "type": "string",
+            "enum": ["PO", "FOC"],
+            "maxLength": 15,
+            "description": "PO or FOC (Free Of Charge) (Header)."
+          }
+        },
+        "required": ["supplierCode", "poDate", "poNo", "fc"],
+        "additionalProperties": false
+      },
+      "details": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "properties": {
+            "additionalRemarks": {
+              "type": ["string", "null"],
+              "description": "Remarks (Detail, optional)."
+            },
+            "orderNo": {
+              "type": "string",
+              "maxLength": 25,
+              "description": "Order number (Detail)."
+            },
+            "itemCode": {
+              "type": "string",
+              "maxLength": 50,
+              "description": "Item code (Detail)."
+            },
+            "vendorQty": {
+              "type": "number",
+              "multipleOf": 0.01,
+              "description": "Quantity from vendor (Detail, decimal(18,2))."
+            },
+            "vendorUnitCode": {
+              "type": "string",
+              "maxLength": 10,
+              "description": "Vendor unit code (Detail)."
+            },
+            "unitPrice": {
+              "type": "number",
+              "multipleOf": 0.00001,
+              "description": "Unit price (Detail, decimal(20,5))."
+            },
+            "currency": {
+              "type": "string",
+              "maxLength": 10,
+              "description": "Currency (Detail)."
+            }
+          },
+          "required": [
+            "orderNo",
+            "itemCode",
+            "vendorQty",
+            "vendorUnitCode",
+            "unitPrice",
+            "currency"
+          ],
+          "additionalProperties": false
+        },
+        "description": "Detail line items."
+      }
+    },
+    "required": ["header", "details"],
+    "additionalProperties": false,
+    "examples": [
+      {
+        "header": {
+          "supplierCode": "SUP-009",
+          "poDate": "2025-09-10 14:22:00.000",
+          "poNo": "PO-2025-000123",
+          "etdActual": "2025-09-18 09:00:00.000",
+          "eta": "2025-09-25 16:30:00.000",
+          "fc": "PO"
+        },
+        "details": [
+          {
+            "additionalRemarks": "Urgent production",
+            "orderNo": "ORD-7788",
+            "itemCode": "RM-PP-110",
+            "vendorQty": 1500.00,
+            "vendorUnitCode": "KG",
+            "unitPrice": 1.25000,
+            "currency": "USD"
+          },
+          {
+            "additionalRemarks": null,
+            "orderNo": "ORD-7788",
+            "itemCode": "DYE-BLUE-01",
+            "vendorQty": 25.50,
+            "vendorUnitCode": "LTR",
+            "unitPrice": 12.00000,
+            "currency": "USD"
+          }
+        ]
+      }
+    ]
+  }
+  

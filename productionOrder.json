@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Production Order Schema",
+    "type": "object",
+    "description": "Production order header. Timestamps use SQL Server format: 'yyyy-MM-dd HH:mm:ss.SSS'.",
+    "properties": {
+      "poNo": {
+        "type": "string",
+        "maxLength": 25,
+        "description": "PO number (Primary)."
+      },
+      "article": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Article identifier/name."
+      },
+      "startDate": {
+        "type": ["string", "null"],
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+        "description": "Start date (optional)."
+      },
+      "productGroup": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Product group."
+      },
+      "qty": {
+        "type": "number",
+        "description": "Quantity (float)."
+      },
+      "orderType": {
+        "type": "string",
+        "enum": ["FOB", "CMT"],
+        "maxLength": 10,
+        "description": "Order type."
+      },
+      "sku": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "SKU for finished goods."
+      },
+      "unitCode": {
+        "type": "string",
+        "maxLength": 10,
+        "description": "Unit of measure code."
+      }
+    },
+    "required": [
+      "poNo",
+      "article",
+      "productGroup",
+      "qty",
+      "orderType",
+      "sku",
+      "unitCode"
+    ],
+    "additionalProperties": false,
+    "examples": [
+      {
+        "poNo": "PO-24-000789",
+        "article": "T-Shirt Classic 180gsm",
+        "startDate": "2025-09-22 08:00:00.000",
+        "productGroup": "Apparel",
+        "qty": 5000,
+        "orderType": "CMT",
+        "sku": "TS-CLS-180-BLK-MIX",
+        "unitCode": "PCS"
+      }
+    ]
+  }
+  

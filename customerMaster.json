@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Customer Master Schema",
+    "type": "object",
+    "description": "Master data for customers.",
+    "properties": {
+      "customerCode": {
+        "type": "string",
+        "maxLength": 10,
+        "description": "Primary key for the customer."
+      },
+      "customerName": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Customer name."
+      },
+      "address": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Customer address."
+      },
+      "city": {
+        "type": ["string", "null"],
+        "maxLength": 50,
+        "description": "City (optional)."
+      },
+      "province": {
+        "type": ["string", "null"],
+        "maxLength": 50,
+        "description": "Province/State (optional)."
+      },
+      "country": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Country."
+      },
+      "npwp": {
+        "type": ["string", "null"],
+        "maxLength": 50,
+        "description": "Indonesian tax ID (optional)."
+      }
+    },
+    "required": ["customerCode", "customerName", "address", "country"],
+    "additionalProperties": false,
+    "examples": [
+      {
+        "customerCode": "CUST-001",
+        "customerName": "PT Nusantara Jaya",
+        "address": "Jl. Melati No. 5",
+        "city": "Jakarta",
+        "province": "DKI Jakarta",
+        "country": "Indonesia",
+        "npwp": "12.345.678.9-012.000"
+      }
+    ]
+  }
+  

@@ -1,0 +1,98 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Dispatch (General) Schema",
+    "type": "object",
+    "description": "General dispatch transaction. Datetimes use SQL Server format: 'yyyy-MM-dd HH:mm:ss.SSS'.",
+    "properties": {
+      "transactionNo": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Primary transaction number."
+      },
+      "transactionDate": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+        "description": "Transaction date and time."
+      },
+      "dispatchTo": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Destination: 'Production' or 'External'."
+      },
+      "itemCode": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Item code."
+      },
+      "qty": {
+        "type": "number",
+        "multipleOf": 0.0001,
+        "description": "Quantity (decimal(18,4))."
+      },
+      "unitCode": {
+        "type": "string",
+        "maxLength": 10,
+        "description": "Unit of measure code."
+      },
+      "batchNo": {
+        "type": "integer",
+        "description": "Batch number reference."
+      },
+      "deliveryNoteNo": {
+        "type": ["string", "null"],
+        "maxLength": 50,
+        "description": "Delivery note number (optional)."
+      },
+      "noAju": {
+        "type": ["string", "null"],
+        "maxLength": 26,
+        "description": "Nomor Aju (PPKEK document) (optional)."
+      },
+      "deliverTo": {
+        "type": ["string", "null"],
+        "maxLength": 200,
+        "description": "Delivery address/recipient (optional)."
+      },
+      "vehicleId": {
+        "type": ["string", "null"],
+        "maxLength": 50,
+        "description": "Vehicle ID/plate number (optional)."
+      },
+      "nw": {
+        "type": ["number", "null"],
+        "description": "Net weight (optional)."
+      },
+      "gw": {
+        "type": ["number", "null"],
+        "description": "Gross weight (optional)."
+      }
+    },
+    "required": [
+      "transactionNo",
+      "transactionDate",
+      "dispatchTo",
+      "itemCode",
+      "qty",
+      "unitCode",
+      "batchNo"
+    ],
+    "additionalProperties": false,
+    "examples": [
+      {
+        "transactionNo": "DG-2025-000145",
+        "transactionDate": "2025-09-22 13:05:00.000",
+        "dispatchTo": "External",
+        "itemCode": "FG-TS-CLS-180",
+        "qty": 1200.0000,
+        "unitCode": "PCS",
+        "batchNo": 4502,
+        "deliveryNoteNo": "SJ-2025-0915-001",
+        "noAju": "23092025000000123456789012",
+        "deliverTo": "PT Logistik Sejahtera, Jakarta",
+        "vehicleId": "B 1234 XYZ",
+        "nw": 580.5,
+        "gw": 600.0
+      }
+    ]
+  }
+  

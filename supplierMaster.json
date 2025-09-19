@@ -1,0 +1,82 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Supplier Master Schema",
+    "type": "object",
+    "description": "Master data for suppliers.",
+    "properties": {
+      "supplierCode": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Supplier primary key."
+      },
+      "supplierName": {
+        "type": "string",
+        "maxLength": 200,
+        "description": "Supplier name."
+      },
+      "address": {
+        "type": "string",
+        "maxLength": 200,
+        "description": "Supplier address."
+      },
+      "stateOrProvince": {
+        "type": ["string", "null"],
+        "maxLength": 50,
+        "description": "State/Province (optional)."
+      },
+      "countryOrRegion": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Country/Region."
+      },
+      "city": {
+        "type": ["string", "null"],
+        "maxLength": 50,
+        "description": "City (optional)."
+      },
+      "npwp": {
+        "type": ["string", "null"],
+        "maxLength": 50,
+        "description": "Indonesian tax ID (optional)."
+      },
+      "emailAddress": {
+        "type": ["string", "null"],
+        "maxLength": 50,
+        "format": "email",
+        "description": "Supplier email (optional)."
+      },
+      "businessPhone": {
+        "type": ["string", "null"],
+        "maxLength": 25,
+        "description": "Business phone (optional)."
+      },
+      "faxNo": {
+        "type": ["string", "null"],
+        "maxLength": 25,
+        "description": "Fax number (optional)."
+      },
+      "zipOrPostalCode": {
+        "type": ["string", "null"],
+        "maxLength": 15,
+        "description": "ZIP/Postal code (optional)."
+      }
+    },
+    "required": ["supplierCode", "supplierName", "address", "countryOrRegion"],
+    "additionalProperties": false,
+    "examples": [
+      {
+        "supplierCode": "SUP-001",
+        "supplierName": "PT Sumber Makmur",
+        "address": "Jl. Merdeka No. 10",
+        "stateOrProvince": "West Java",
+        "countryOrRegion": "Indonesia",
+        "city": "Bandung",
+        "npwp": "01.234.567.8-901.000",
+        "emailAddress": "procurement@sumbermakmur.co.id",
+        "businessPhone": "+62 22 1234567",
+        "faxNo": null,
+        "zipOrPostalCode": "40123"
+      }
+    ]
+  }
+  

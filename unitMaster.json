@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Unit Master Schema",
+    "type": "object",
+    "description": "Master data for internal units and their references to the INSW standard units.",
+    "properties": {
+      "internalUnitCode": {
+        "type": "string",
+        "maxLength": 10,
+        "description": "Primary key for the internal unit."
+      },
+      "unitDescription": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Unit description."
+      },
+      "aliasUnitCode": {
+        "type": "string",
+        "maxLength": 10,
+        "description": "Unit code referencing the INSW standard (see the UnitINSW sheet, 'code' column)."
+      }
+    },
+    "required": ["internalUnitCode", "unitDescription", "aliasUnitCode"],
+    "additionalProperties": false,
+    "examples": [
+      {
+        "internalUnitCode": "PCS",
+        "unitDescription": "Pieces",
+        "aliasUnitCode": "PCE"
+      }
+    ]
+  }
+  

@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Goods Received to FG Warehouse Schema",
+    "type": "object",
+    "description": "Receipt of finished goods into the Finished Goods warehouse. Datetimes use SQL Server format: 'yyyy-MM-dd HH:mm:ss.SSS'.",
+    "properties": {
+      "transactionNo": {
+        "type": "string",
+        "maxLength": 50,
+        "description": "Primary transaction number."
+      },
+      "transactionDate": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+        "description": "Transaction date and time."
+      },
+      "poNo": {
+        "type": "string",
+        "maxLength": 25,
+        "description": "Production Order number (PRO NO)."
+      },
+      "qty": {
+        "type": "integer",
+        "description": "Quantity received (units of finished goods)."
+      }
+    },
+    "required": ["transactionNo", "transactionDate", "poNo", "qty"],
+    "additionalProperties": false,
+    "examples": [
+      {
+        "transactionNo": "GR-FG-2025-000077",
+        "transactionDate": "2025-09-21 15:45:00.000",
+        "poNo": "PO-24-000789",
+        "qty": 5000
+      }
+    ]
+  }
+  
