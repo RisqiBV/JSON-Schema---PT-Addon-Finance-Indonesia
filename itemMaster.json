@@ -1,71 +1,95 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "title": "INSW Item Master Schema",
-    "description": "Item master data structure. Timestamps use SQL Server format: 'yyyy-MM-dd HH:mm:ss.SSS'.",
-    "properties": {
-      "itemCode": {
-        "type": "string",
-        "maxLength": 50,
-        "description": "Unique item code (Primary Key)."
-      },
-      "itemName": {
-        "type": "string",
-        "maxLength": 250,
-        "description": "Descriptive item name."
-      },
-      "categoryCodeBC": {
-        "type": "integer",
-        "description": "INSW goods category (see ListOfCategoryBC, column CategoryCode)."
-      },
-      "hsCode": {
-        "type": ["string", "null"],
-        "maxLength": 10,
-        "description": "HS Code (optional)."
-      },
-      "categoryInternal": {
-        "type": "string",
-        "maxLength": 50,
-        "description": "Internal classification/category."
-      },
-      "createdAt": {
-        "type": "string",
-        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-        "description": "Creation timestamp."
-      },
-      "updatedAt": {
-        "type": "string",
-        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-        "description": "Last update timestamp."
-      },
-      "deletedAt": {
-        "type": ["string", "null"],
-        "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
-        "description": "Deletion timestamp (nullable)."
-      }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "INSW Item Master Schema",
+  "description": "Item master data structure. Timestamps use SQL Server format: 'yyyy-MM-dd HH:mm:ss.SSS'.",
+  "properties": {
+    "itemCode": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Unique item code (Primary Key)."
     },
-    "required": [
-      "itemCode",
-      "itemName",
-      "categoryCodeBC",
-      "categoryInternal",
-      "createdAt",
-      "updatedAt",
-      "deletedAt"
-    ],
-    
-    "additionalProperties": false,
-    "examples": [
-      {
-        "itemCode": "ITM-0001",
-        "itemName": "Plastic Pellets",
-        "categoryCodeBC": 2,
-        "hsCode": "39011090",
-        "categoryInternal": "Raw Material",
-        "createdAt": "2025-04-10 11:46:07.333",
-        "updatedAt": "2025-04-11 09:15:22.127",
-        "deletedAt": null
-      }
-    ]
-  }
-  
+    "itemName": {
+      "type": "string",
+      "maxLength": 250,
+      "description": "Descriptive item name."
+    },
+    "categoryCodeBC": {
+      "type": "integer",
+      "description": "INSW goods category (see ListOfCategoryBC, column CategoryCode)."
+    },
+    "hsCode": {
+      "type": ["string", "null"],
+      "maxLength": 10,
+      "description": "HS Code (optional)."
+    },
+    "categoryInternal": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Internal classification/category."
+    },
+    "createdAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+      "description": "Creation timestamp."
+    },
+    "updatedAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+      "description": "Last update timestamp."
+    },
+    "deletedAt": {
+      "type": ["string", "null"],
+      "pattern": "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}$",
+      "description": "Deletion timestamp (nullable)."
+    }
+  },
+  "required": [
+    "itemCode",
+    "itemName",
+    "categoryCodeBC",
+    "categoryInternal",
+    "createdAt",
+    "updatedAt",
+    "deletedAt"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "itemCode": "ITM-0001",
+      "itemName": "Plastic Pellets",
+      "categoryCodeBC": 2,
+      "hsCode": "39011090",
+      "categoryInternal": "Raw Material",
+      "createdAt": "2025-04-10 11:46:07.333",
+      "updatedAt": "2025-04-11 09:15:22.127",
+      "deletedAt": null
+    },
+    {
+      "status": "success",
+      "message": "Data item berhasil disimpan",
+      "data": [
+        {
+          "Uuid": "4ef0d52f-f9ce-471d-8918-13cfba703437",
+          "itemCode": "ITM001",
+          "itemName": "Item Example 1",
+          "categoryCodeBC": 1001,
+          "hsCode": "HS12345",
+          "categoryInternal": "Category A",
+          "locationId": 99,
+          "seqCode": 5
+        },
+        {
+          "Uuid": "48d856c5-14b7-4838-b1d8-a820ad5c535e",
+          "itemCode": "ITM002",
+          "itemName": "Item Example 2",
+          "categoryCodeBC": 1002,
+          "hsCode": "HS12346",
+          "categoryInternal": "Category B",
+          "locationId": 99,
+          "seqCode": 6
+        }
+      ]
+    }
+  ]
+}
