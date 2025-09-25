@@ -66,30 +66,32 @@
       "deletedAt": null
     },
     {
-      "status": "success",
-      "message": "Data item berhasil disimpan",
-      "data": [
-        {
-          "Uuid": "4ef0d52f-f9ce-471d-8918-13cfba703437",
-          "itemCode": "ITM001",
-          "itemName": "Item Example 1",
-          "categoryCodeBC": 1001,
-          "hsCode": "HS12345",
-          "categoryInternal": "Category A",
-          "locationId": 99,
-          "seqCode": 5
-        },
-        {
-          "Uuid": "48d856c5-14b7-4838-b1d8-a820ad5c535e",
-          "itemCode": "ITM002",
-          "itemName": "Item Example 2",
-          "categoryCodeBC": 1002,
-          "hsCode": "HS12346",
-          "categoryInternal": "Category B",
-          "locationId": 99,
-          "seqCode": 6
-        }
-      ]
+      "response": {
+        "status": "success",
+        "message": "Data item berhasil disimpan",
+        "data": [
+          {
+            "Uuid": "4ef0d52f-f9ce-471d-8918-13cfba703437",
+            "itemCode": "ITM001",
+            "itemName": "Item Example 1",
+            "categoryCodeBC": 1001,
+            "hsCode": "HS12345",
+            "categoryInternal": "Category A",
+            "locationId": 99,
+            "seqCode": 5
+          },
+          {
+            "Uuid": "48d856c5-14b7-4838-b1d8-a820ad5c535e",
+            "itemCode": "ITM002",
+            "itemName": "Item Example 2",
+            "categoryCodeBC": 1002,
+            "hsCode": "HS12346",
+            "categoryInternal": "Category B",
+            "locationId": 99,
+            "seqCode": 6
+          }
+        ]
+      }
     }
   ]
 }
